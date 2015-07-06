@@ -7,9 +7,12 @@ public class GravityMultiple : MonoBehaviour {
     public float gravitationalConstant = 10; // gravitational constant
     public float myMass = 1;
     public float massMultiplier = 25;
+    public LayerMask groundMask;
 
     private GameObject[] planets;
     private Rigidbody rb;
+    private bool grounded;
+    private GameObject groundPlanet;
 
     private void Awake()
     {
@@ -24,6 +27,29 @@ public class GravityMultiple : MonoBehaviour {
 
         // find planets
         planets = GameObject.FindGameObjectsWithTag("Planet");
+    }
+
+    private void Update()
+    {
+        if (groundPlanet == null) return;
+
+        // Grounded check
+        Ray ray = new Ray(transform.position, -transform.up);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, 4.3f + groundPlanet.transform.localScale.x / 40, groundMask))
+        {
+            print("on ground");
+            grounded = true;
+            parent(true);
+
+        }
+        else
+        {
+            print("off ground");
+            grounded = false;
+            parent(false);
+        }
     }
 
     private void FixedUpdate()
@@ -51,12 +77,26 @@ public class GravityMultiple : MonoBehaviour {
             if (closestDis == -1 || dis < closestDis)
             {
                 closestDis = dis;
-                dirUp = dir;              
+                dirUp = dir;
+                groundPlanet = planet;
+                Debug.Log(planet.name);
             }
         }
 
         // set rotation towards nearest planet
         HandleRotation(dirUp);
+    }
+
+    private void parent(bool set)
+    {
+        if (set)
+        {
+            transform.parent = groundPlanet.transform;
+        }
+        else
+        {
+            transform.parent = null;
+        }
     }
 
     private void HandleRotation(Vector3 dirUp)
@@ -72,7 +112,7 @@ public class GravityMultiple : MonoBehaviour {
         float dirDiff = Vector3.Dot(transform.up.normalized, dirUp.normalized);
         if (dirDiff < 0)
         {
-            rotSpeed = 2;
+            rotSpeed = 50;
         }
         else if (dirDiff >= 0.9)
         {
