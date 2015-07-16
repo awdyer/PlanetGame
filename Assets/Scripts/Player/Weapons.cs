@@ -132,6 +132,7 @@ public class Weapons : MonoBehaviour {
 
 	void ScaleObject(GameObject scaleObject){
 		if (scaleObject.transform.localScale.magnitude < 3) {
+			//adsadyh
 			scaleObject.transform.localScale = new Vector3 (scaleObject.transform.localScale.x * scaleAmount, scaleObject.transform.localScale.y * scaleAmount, scaleObject.transform.localScale.z * scaleAmount);
 		}
 	}
