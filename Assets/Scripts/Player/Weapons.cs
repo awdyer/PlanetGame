@@ -86,7 +86,7 @@ public class Weapons : MonoBehaviour {
 
 		//forzen floor test
 		if (Input.GetKey (KeyCode.Mouse1)) {
-			if (hit.collider.tag == "water"){
+			if (hit.collider.tag == "water" && gunEnergy > 0){
 
 				floor = Instantiate(frozenFloor,TargetPoint, planet.transform.rotation) as GameObject;
 				gunEnergy -= 1;

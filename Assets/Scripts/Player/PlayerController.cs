@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour {
 		// Look rotation:
 		transform.Rotate(Vector3.up * Input.GetAxis("Mouse X") * mouseSensitivityX * Time.deltaTime);
 		verticalLookRotation += Input.GetAxis("Mouse Y") * mouseSensitivityY * Time.deltaTime;
-		verticalLookRotation = Mathf.Clamp(verticalLookRotation,-60,60);
+		verticalLookRotation = Mathf.Clamp(verticalLookRotation,-90,90);
 		cameraTransform.localEulerAngles = Vector3.left * verticalLookRotation;
 		
 		// Calculate movement:

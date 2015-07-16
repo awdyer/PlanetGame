@@ -745,14 +745,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68ec2fe99d1108b9d0006a298d76c639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axes: 1
-  sensitivityX: 15
-  sensitivityY: 0
-  minimumX: -360
-  maximumX: 360
-  minimumY: 0
-  maximumY: 0
-  rotationY: 0
 --- !u!4 &570462943
 Transform:
   m_ObjectHideFlags: 0
@@ -881,14 +873,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68ec2fe99d1108b9d0006a298d76c639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axes: 2
-  sensitivityX: 10
-  sensitivityY: 10
-  minimumX: 0
-  maximumX: 360
-  minimumY: -90
-  maximumY: 90
-  rotationY: 0
 --- !u!124 &663038624
 Behaviour:
   m_ObjectHideFlags: 0
@@ -1743,7 +1727,7 @@ Halo:
   m_Color:
     serializedVersion: 2
     rgba: 1840094541
-  m_Size: .49000001
+  m_Size: .100000001
 --- !u!1 &1875350990 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: c00a0c3d717a1bc4a89edf701ba73b48, type: 3}
@@ -1772,7 +1756,7 @@ MonoBehaviour:
   MainCamera: {fileID: 663038626}
   TargetPoint: {x: 0, y: 0, z: 0}
   fireRate: .5
-  scaleAmount: 1.0201
+  scaleAmount: 1.00010002
   frozenFloor: {fileID: 161180, guid: 6d0fd11869e337249a7b1f07f9045b08, type: 2}
   planet: {fileID: 1818487394}
   gunEnergy: 10
