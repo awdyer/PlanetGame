@@ -34,22 +34,23 @@ public class GravityBody : MonoBehaviour {
         if (groundPlanet == null) return;
 
         // Grounded check
-        Ray ray = new Ray(transform.position, -transform.up);
-        RaycastHit hit;
+        //Ray ray = new Ray(transform.position, -transform.up);
+        //RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, 4.3f + groundPlanet.transform.localScale.x / 40, groundMask))
-        {
-            print("on ground");
-            grounded = true;
-            parent(true);
+        //if (Physics.Raycast(ray, out hit, 4.3f + groundPlanet.transform.localScale.x / 40, groundMask))
+        //{
+        //    //print("on ground");
+        //    grounded = true;
+        //    SetParent(true);
 
-        }
-        else
-        {
-            print("off ground");
-            grounded = false;
-            parent(false);
-        }
+        //}
+        //else
+        //{
+        //    //print("off ground");
+        //    grounded = false;
+        //    SetParent(false);
+        //}
+        Debug.Log("Parent: " + transform.parent.name);
     }
 
     private void FixedUpdate()
@@ -79,7 +80,7 @@ public class GravityBody : MonoBehaviour {
                 closestDis = dis;
                 dirUp = dir;
                 groundPlanet = planet;
-                Debug.Log(planet.name);
+                //Debug.Log(planet.name);
             }
         }
 
@@ -87,7 +88,27 @@ public class GravityBody : MonoBehaviour {
         HandleRotation(dirUp);
     }
 
-    private void parent(bool set)
+    void OnCollisionEnter(Collision col)
+    {
+        print("I just hit" + col.gameObject);
+        if (col.gameObject.tag == "Planet")
+        {
+            grounded = true;
+            SetParent(true);
+        }
+    }
+
+    void OnCollisionExit(Collision col)
+    {
+        print("I just hit" + col.gameObject);
+        if (col.gameObject.tag == "Planet")
+        {
+            grounded = false;
+            SetParent(false);
+        }
+    }
+
+    private void SetParent(bool set)
     {
         if (set)
         {
