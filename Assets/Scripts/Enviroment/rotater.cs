@@ -1,15 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class rotater : MonoBehaviour {
-	
-	public float speed = 1.0f;
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		this.transform.Rotate(Time.deltaTime, speed, 0);
-	}
+public class Rotater : MonoBehaviour
+{
+
+    public float rotateSpeed = 1.0f;
+
+    private void Update()
+    {
+        transform.Rotate(new Vector3(0, rotateSpeed, 0) * Time.deltaTime);
+    }
 }

@@ -120,8 +120,8 @@ public class Weapons : MonoBehaviour {
 	/*Scales Bullet*/
 	void ScaleObject(Transform scaleObject){
 		print ("scaling");
-		gunEnergy -= 1;
-		if (scaleObject.localScale.magnitude < 100) {
+		gunEnergy -= 2;
+		if (scaleObject.localScale.magnitude < 50) {
 			//scales Object
 			scaleObject.localScale = new Vector3 (scaleObject.localScale.x * scaleAmount, scaleObject.localScale.y * scaleAmount, scaleObject.localScale.z * scaleAmount);
 			scaleObject.transform.position += 0.015f * FiringPoint.right;
