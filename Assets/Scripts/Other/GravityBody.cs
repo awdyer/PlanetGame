@@ -50,7 +50,8 @@ public class GravityBody : MonoBehaviour {
         //    grounded = false;
         //    SetParent(false);
         //}
-        Debug.Log("Parent: " + transform.parent.name);
+        if (transform.parent != null)
+            Debug.Log("Parent: " + transform.parent.name);
     }
 
     private void FixedUpdate()
