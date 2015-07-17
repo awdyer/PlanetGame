@@ -9,6 +9,8 @@ TagManager:
   - planet
   - frozen
   - New Tag
+  - Type
+  - New Tag
   layers:
   - Default
   - TransparentFX
