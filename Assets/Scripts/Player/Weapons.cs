@@ -13,7 +13,7 @@ public class Weapons : MonoBehaviour {
 
 	private bullet bullet; 
 
-	public float fireRate = 0.5f;
+	public float fireRate = 0.25f;
 	private float nextFire = 0.0f;
 	
 	private GameObject Gunshot;
@@ -29,6 +29,7 @@ public class Weapons : MonoBehaviour {
 	public GameObject Bullet;
 
 	private bool scaling = false;
+	private GameObject hitObject;
 
 	void Start(){
 		point = new Vector3 (0.5f, 0.5f, 0f);
@@ -53,6 +54,7 @@ public class Weapons : MonoBehaviour {
 		if (Physics.Raycast (beam, out hit)){
 			//tells the beam this is the target point
 			TargetPoint=hit.point;
+			hitObject = hit.collider.gameObject;
 			//draws the beam in the senceview so you can see it
 			Debug.DrawLine (FiringPoint.position, hit.point);      
 		}
@@ -71,6 +73,7 @@ public class Weapons : MonoBehaviour {
 			Gunshot = Instantiate(Bullet,FiringPoint.position,FiringPoint.rotation) as GameObject;
 			Gunshot.GetComponent<bullet>().Point = TargetPoint;
 			Gunshot.GetComponent<bullet>().Shoot = true;
+			Gunshot.GetComponent<bullet>().hitObject = hitObject;
 			Destroy (Gunshot, WeaponRange);
 			Destroy (Gunshot.GetComponent<bullet>().Target, WeaponRange);
 		}
@@ -96,7 +99,9 @@ public class Weapons : MonoBehaviour {
 			Gunshot.transform.parent = GameObject.Find("Planet").transform;
 			scaling = false;
 			Gunshot.GetComponent<bullet>().Point = TargetPoint;
+			Gunshot.GetComponent<bullet>().hitObject = hitObject;
 			Gunshot.GetComponent<bullet>().Shoot = true;
+		
 			Destroy (Gunshot, WeaponRange);
 			Destroy (Gunshot.GetComponent<bullet>().Target, WeaponRange);
 		}
@@ -120,8 +125,8 @@ public class Weapons : MonoBehaviour {
 	/*Scales Bullet*/
 	void ScaleObject(Transform scaleObject){
 		print ("scaling");
-		gunEnergy -= 1;
-		if (scaleObject.localScale.magnitude < 100) {
+		gunEnergy -= 2;
+		if (scaleObject.localScale.magnitude < 50) {
 			//scales Object
 			scaleObject.localScale = new Vector3 (scaleObject.localScale.x * scaleAmount, scaleObject.localScale.y * scaleAmount, scaleObject.localScale.z * scaleAmount);
 			scaleObject.transform.position += 0.015f * FiringPoint.right;

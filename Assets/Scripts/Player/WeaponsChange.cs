@@ -21,15 +21,14 @@ public class WeaponsChange : MonoBehaviour {
 		weaponList = Resources.LoadAll<GameObject>("Weapons") as GameObject[];
 
 
-		foreach (GameObject obj in typeList){
-			GameObject weaponType = Instantiate(obj, weaponSpot.position, weaponSpot.rotation) as GameObject;
+		for (int i = 0; i<typeList.Length; i++){
+			GameObject weaponType = Instantiate(typeList[i], weaponSpot.position, weaponSpot.rotation) as GameObject;
 			weaponType.SetActive(false);
 			weaponType.transform.parent = weaponSpot;
+			typeList[i] = weaponType;
 		}
 
 		currentType = typeList [typeNumber];
-		print (currentType);
-
 		currentType.SetActive(true);
 
 		currentWeapon = weaponList [typeNumber];
@@ -57,6 +56,14 @@ public class WeaponsChange : MonoBehaviour {
 		currentType = typeList[typeNumber];
 		currentWeapon = weaponList [typeNumber];
 		weaponsScript.Bullet = currentWeapon;
+		//SetActive if object is currentType
+		foreach (GameObject obj in typeList) {
+			if (obj == currentType) {
+				obj.SetActive (true);
+			} else {
+				obj.SetActive (false);
+			}
+		}
 	}
 
 	/*Adds new Weapon to weaponsList*/

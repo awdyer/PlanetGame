@@ -5,12 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - water
-  - New Tag
   - planet
   - frozen
-  - New Tag
-  - Type
-  - New Tag
   layers:
   - Default
   - TransparentFX
